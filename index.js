@@ -12,6 +12,7 @@ const __dirname = path.dirname(fileURLToPath(
 
 //Importacion de Variables y Funciones
 import { DB_URL } from "./utils/db.js"
+import { raceRoutes } from "./routes/race.routes.js";
 import { userRoutes } from "./routes/user.routes.js";
 // import './authentication/passport.js';
 import { isAuth } from "./authentication/jwt.js";
@@ -57,6 +58,7 @@ server.use(logger("dev"));
 //Ruta que van a usar los "Routes"
 server.use("/character", characterRoutes);
 server.use("/users", userRoutes);
+server.use("/races", raceRoutes);
 
 // Error Control 404
 server.use("*", (req, res, next) => {
