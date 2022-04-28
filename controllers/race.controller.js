@@ -4,21 +4,21 @@ import { httpStatusCode } from "../seeds/httpStatusCode.js";
 const getRaces = async(req, res, next) => {
     try {
         const races = await Race.find();
-        return res.json({
-            status: 200,
-            message: httpStatusCode[200],
-            data: { race: races },
-        });
+        return res.status(200).json(races)
+            // return res.json({
+            //     status: 200,
+            //     message: httpStatusCode[200],
+            //     data: { race: races },
+            // });
     } catch (error) {
         return next(error);
     }
 };
 const createRace = async(req, res, next) => {
     try {
-        const newRace = new Character();
+        const newRace = new Race();
         newRace.name = req.body.name;
-        newRace.characteristics = req.body.characteristics;
-        characters = []
+        newRace.description = req.body.description;
 
         const newRacesDB = await newRace.save();
         return res.json({

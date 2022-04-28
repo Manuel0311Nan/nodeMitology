@@ -6,9 +6,9 @@ const Schema = mongoose.Schema;
 //Creamos el esquema de personajes
 const mitologySchema = new Schema({
     name: { type: String, require: true },
-    description: { type: Array, require: true },
+    influenceArea: { type: Array, require: true },
+    description: { type: String, require: true },
     characters: [{ type: mongoose.Types.ObjectId, ref: 'Character' }]
-
 }, {
     timestamps: true,
 });

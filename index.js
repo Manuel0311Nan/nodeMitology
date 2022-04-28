@@ -12,10 +12,11 @@ const __dirname = path.dirname(fileURLToPath(
 
 //Importacion de Variables y Funciones
 import { DB_URL } from "./utils/db.js"
-import { raceRoutes } from "./routes/race.routes.js";
+import { racesRoutes } from "./routes/race.routes.js";
+import { mitologiesRoutes } from "./routes/mitology.routes.js";
 import { userRoutes } from "./routes/user.routes.js";
 // import './authentication/passport.js';
-import { isAuth } from "./authentication/jwt.js";
+// import { isAuth } from "./authentication/jwt.js";
 //IMPORTAMOS FUNCIÓN CONNECT
 import { connection } from "./utils/db.js";
 
@@ -32,10 +33,18 @@ connection();
 
 const PORT = process.env.PORT || 4000;
 //Middlewares
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 //El orden de los middlewares es muy importante, NO CAMBIAR
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static(path.join(__dirname, 'public')));
+
 // JWT
 server.set("secretKey", "nodeRestApi");
 
@@ -58,7 +67,8 @@ server.use(logger("dev"));
 //Ruta que van a usar los "Routes"
 server.use("/character", characterRoutes);
 server.use("/users", userRoutes);
-server.use("/races", raceRoutes);
+server.use("/races", racesRoutes);
+server.use("/mitology", mitologiesRoutes);
 
 // Error Control 404
 server.use("*", (req, res, next) => {

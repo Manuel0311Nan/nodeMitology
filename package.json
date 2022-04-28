@@ -8,7 +8,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon index.js",
         "start": "node index.js",
-        "load-god-seed": "node ./seeds/god.seed.js"
+        "load-seed": "node ./seeds/character.seed.js"
     },
     "author": "Manuel",
     "license": "ISC",
@@ -19,6 +19,7 @@
         "cors": "^2.8.5",
         "express": "^4.17.3",
         "express-session": "^1.17.2",
+        "heroku": "^7.60.2",
         "image-to-uri": "^1.0.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.3.0",

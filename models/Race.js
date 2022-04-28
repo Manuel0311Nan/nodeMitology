@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Creamos el esquema de razas
 const raceSchema = new Schema({
     name: { type: String, require: true },
-    characteristics: { type: Array, require: true },
+    description: { type: String, require: true },
     characters: [{ type: mongoose.Types.ObjectId, ref: 'Character' }]
 
 }, {

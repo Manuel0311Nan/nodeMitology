@@ -1,14 +1,14 @@
 import { Character } from "../models/Character.js";
 import { httpStatusCode } from "../seeds/httpStatusCode.js";
-
 const getCharacters = async(req, res, next) => {
     try {
-        const characters = await Character.find();
-        return res.json({
-            status: 200,
-            message: httpStatusCode[200],
-            data: { character: characters },
-        });
+        const characters = await Character.find().populate(({ path: 'race', select: 'name' })).populate(({ path: 'mitology', select: 'name' }));
+        return res.status(200).json(characters)
+            // return res.json({
+            //     status: 200,
+            //     message: httpStatusCode[200],
+            //     data: { character: characters },
+            // });
     } catch (error) {
         return next(error);
     }
@@ -22,7 +22,7 @@ const createCharacter = async(req, res, next) => {
         newCharacter.quality = req.body.quality;
         newCharacter.weapon = req.body.weapon;
         newCharacter.alias = req.body.alias;
-        newCharacter.image = picture;
+        newCharacter.picture = picture;
 
         const newCharactersDB = await newCharacter.save();
         return res.json({
@@ -96,11 +96,37 @@ const findCharacterByName = async(req, res, next) => {
         return next(error);
     }
 };
+const addRace = async(req, res, next) => {
+    try {
+        const { raceId } = req.body;
+        const { characterID } = req.body;
+        const updatedRace = await Character.findByIdAndUpdate(
+            characterID, { $push: { race: raceId } }, { new: true }
+        );
+        return res.status(200).json(updatedRace);
+    } catch (error) {
+        return next(error)
+    }
+}
+const addMitology = async(req, res, next) => {
+    try {
+        const { mitologyId } = req.body;
+        const { characterID } = req.body;
+        const updatedMitology = await Character.findByIdAndUpdate(
+            characterID, { $push: { mitology: mitologyId } }, { new: true }
+        );
+        return res.status(200).json(updatedMitology);
+    } catch (error) {
+        return next(error)
+    }
+}
 export {
     getCharacters,
     createCharacter,
     getCharacterByID,
     editCharacter,
     deleteCharacter,
-    findCharacterByName
+    findCharacterByName,
+    addRace,
+    addMitology
 };

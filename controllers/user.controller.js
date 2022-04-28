@@ -2,7 +2,8 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
-import { User } from "../models/User.js"
+
+import { User } from "../models/User.js";
 
 // const userRoutes = express.Router();
 const createUser = async(req, res, next) => {
@@ -37,6 +38,18 @@ const createUser = async(req, res, next) => {
         });
     } catch (error) {
         return next(error);
+    }
+};
+const getUsers = async(req, res, next) => {
+    try {
+        const user = await User.find();
+        return res.json({
+            status: 200,
+            message: "Listado de usuarios",
+            data: { user: user },
+        });
+    } catch (error) {
+        return next(error)
     }
 };
 const loginUser = async(req, res, next) => {
@@ -95,4 +108,4 @@ const logoutUser = async(req, res, next) => {
 };
 
 
-export { createUser, loginUser, logoutUser }
+export { createUser, getUsers, loginUser, logoutUser }

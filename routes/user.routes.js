@@ -3,6 +3,7 @@
 import express from "express";
 import {
     createUser,
+    getUsers,
     loginUser,
     logoutUser,
 } from "../controllers/user.controller.js";
@@ -10,6 +11,7 @@ import {
 const router = express.Router();
 
 router.post("/register", createUser);
+router.get("/list", getUsers)
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 

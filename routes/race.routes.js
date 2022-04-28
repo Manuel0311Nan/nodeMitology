@@ -4,10 +4,13 @@ import express from "express";
 import {
     getRaces,
     createRace,
-    getRaceById
+    getRaceById,
+    findRaceByName,
+    editRace,
+    deleteRace
 } from '../controllers/race.controller.js';
 
-import { upload, uploadToCloudinary } from '../../middlewares/file.middleware.js';
+import { upload, uploadToCloudinary } from '../middlewares/file.middleware.js';
 
 
 const racesRoutes = express.Router();

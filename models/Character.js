@@ -7,9 +7,9 @@ const Schema = mongoose.Schema;
 const characterSchema = new Schema({
     name: { type: String, required: true },
     quality: { type: Array },
-    weapon: { type: String },
+    weapon: { type: Array },
     alias: { type: String },
-    image: { type: String, required: true },
+    picture: { type: String },
     race: [{ type: mongoose.Types.ObjectId, ref: 'Race' }],
     mitology: [{ type: mongoose.Types.ObjectId, ref: 'Mitology' }]
 }, {

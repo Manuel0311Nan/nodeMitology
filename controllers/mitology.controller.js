@@ -17,6 +17,7 @@ const createMitology = async(req, res, next) => {
     try {
         const newMitology = new Mitology();
         newMitology.name = req.body.name;
+        newMitology.influenceArea = req.body.influenceArea
         newMitology.characteristics = req.body.characteristics;
         characters = []
 
