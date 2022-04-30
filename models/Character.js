@@ -9,7 +9,7 @@ const characterSchema = new Schema({
     quality: { type: Array },
     weapon: { type: Array },
     alias: { type: String },
-    picture: { type: String },
+    image: { type: String },
     race: [{ type: mongoose.Types.ObjectId, ref: 'Race' }],
     mitology: [{ type: mongoose.Types.ObjectId, ref: 'Mitology' }]
 }, {

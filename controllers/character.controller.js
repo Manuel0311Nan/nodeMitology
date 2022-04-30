@@ -16,13 +16,13 @@ const getCharacters = async(req, res, next) => {
 //Función para crear personajes
 const createCharacter = async(req, res, next) => {
     try {
-        const picture = req.file_url || null;
+        const image = req.file_url || null;
         const newCharacter = new Character();
         newCharacter.name = req.body.name;
         newCharacter.quality = req.body.quality;
         newCharacter.weapon = req.body.weapon;
         newCharacter.alias = req.body.alias;
-        newCharacter.picture = picture;
+        newCharacter.image = image;
 
         const newCharactersDB = await newCharacter.save();
         return res.json({

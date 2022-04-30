@@ -10,16 +10,16 @@ const __dirname = path.dirname(fileURLToPath(
 const VALID_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'];
 
 cloudinary.config({
-    cloud_name: process.env.cloud_name,
-    api_key: process.env.api_key,
-    api_secret: process.env.api_secret
+    cloud_name: 'dcpgr4jjn',
+    api_key: '649745266161171',
+    api_secret: 'sa3asg73_w0E_t0GAtVdm7YYd7M'
 });
 const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
     },
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../temp'));
+        cb(null, path.join(__dirname + '../images'));
     }
 });
 

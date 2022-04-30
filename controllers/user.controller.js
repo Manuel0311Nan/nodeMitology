@@ -59,16 +59,16 @@ const loginUser = async(req, res, next) => {
         // Comprobar email
         const user = await User.findOne({ email: body.email });
 
-        // Comprobar password ( da error)
-        // const isValidPassword = await bcrypt.compare(body.password, user ? password ? );
-        // // Control de LOGIN
-        // if (!user || !isValidPassword) {
-        //     const error = {
-        //         status: 401,
-        //         message: 'The email & password combination is incorrect!'
-        //     };
-        //     return next(error);
-        // }
+        // Comprobar password(da error)
+        const isValidPassword = bcrypt.compare(body.password);
+        // Control de LOGIN
+        if (!user || !isValidPassword) {
+            const error = {
+                status: 401,
+                message: 'The email & password combination is incorrect!'
+            };
+            return next(error);
+        }
 
         // TOKEN JWT
         const token = jwt.sign({
