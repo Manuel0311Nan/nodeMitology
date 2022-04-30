@@ -65,10 +65,10 @@ server.use(
 //Le indicamos al server que utilice logger ( morgan) mientras esté en desarrollo
 server.use(logger("dev"));
 //Ruta que van a usar los "Routes"
-server.use("/character", { isAuth }, characterRoutes);
+server.use("/character", characterRoutes);
 server.use("/users", userRoutes);
-server.use("/races", { isAuth }, racesRoutes);
-server.use("/mitology", { isAuth }, mitologiesRoutes);
+server.use("/races", racesRoutes);
+server.use("/mitology", mitologiesRoutes);
 
 // Error Control 404
 server.use("*", (req, res, next) => {
